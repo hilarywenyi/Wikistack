@@ -10,11 +10,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.16.4",
     "html-template-tag": "^2.0.0",
+    "marked": "^0.5.1",
     "morgan": "^1.9.1",
     "pg": "^7.6.1",
     "pg-hstore": "^2.3.2",
     "psql": "0.0.1",
     "sequelize": "^4.41.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
   }
 }

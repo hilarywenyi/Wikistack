@@ -1,4 +1,5 @@
 body {
+<<<<<<< HEAD
     padding: 50px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   }
@@ -6,3 +7,12 @@ body {
   a {
     color: #00B7FF;
   }
+=======
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+>>>>>>> c37eeed73aef0b536db1f16f779326e0a32232be

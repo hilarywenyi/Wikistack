@@ -1,23 +1,38 @@
-const express = require('express')
-const morgan = require('morgan')
-const views = require('./views')
-const app = express()
+const express = require('express');
+const morgan = require('morgan');
+const app = express();
+const models = require('./models');
+const path = require('path')
 
-app.use(express.urlencoded({extended:false}))
-app.use(morgan('dev'))
-app.use(express.static(__dirname + '/public'))
-app.get('/', (req,res,next)=>{
-    res.send(views.main())
+const wikiRouter = require('./routes/wiki');
+const userRouter = require('./routes/user');
+
+
+app.use(express.urlencoded({ extended: false }));
+
+app.use(morgan('dev'));
+app.use(express.static(path.join(__dirname + '/public')));
+app.use('/wiki', wikiRouter);
+app.use('/users', userRouter)
+app.get('/', (req, res, next) => {
+  res.redirect('/wiki');
 });
 
-const { db } = require('./models');
-db.authenticate().
+
+const PORT = 3000;
+
+models.db.authenticate().
 then(() => {
   console.log('connected to the database');
 })
 
-const PORT = 3000;
-
-app.listen(PORT, ()=>{
-    console.log(`App listening in port ${PORT}`)
-})
+const init = async () => {
+  await models.User.sync();
+  await models.Page.sync();
+  //await models.db.sync();
+  //{force:true}
+  app.listen(PORT, () => {
+    console.log(`App listening in port ${PORT}`);
+  });
+};
+init();
